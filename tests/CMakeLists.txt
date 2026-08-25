@@ -19,4 +19,5 @@ add_ministl_test(version_tests)
 add_ministl_test(raw_buffer_tests)
 add_ministl_test(lifetime_tests)
 add_ministl_test(uninitialized_tests)
+add_ministl_test(vector_tests)
 
