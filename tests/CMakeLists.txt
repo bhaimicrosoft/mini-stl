@@ -1,25 +1,22 @@
-add_executable(
-        lifetime_tests
-        lifetime_tests.cpp)
+function(add_ministl_test TEST_NAME)
+    add_executable(
+            ${TEST_NAME}
+            ${TEST_NAME}.cpp
+    )
 
-target_link_libraries(
-        lifetime_tests
-        PRIVATE
-        ministl)
+    target_link_libraries(
+            ${TEST_NAME}
+            PRIVATE ministl
+    )
 
-add_test(
-        NAME lifetime_tests
-        COMMAND lifetime_tests)
+    add_test(
+            NAME ${TEST_NAME}
+            COMMAND ${TEST_NAME}
+    )
+endfunction()
 
-add_executable(raw_buffer_tests
-        raw_buffer_tests.cpp
-)
+add_ministl_test(version_tests)
+add_ministl_test(raw_buffer_tests)
+add_ministl_test(lifetime_tests)
+add_ministl_test(uninitialized_tests)
 
-target_link_libraries(raw_buffer_tests
-        PRIVATE ministl
-)
-
-add_test(
-        NAME raw_buffer_tests
-        COMMAND raw_buffer_tests
-)
