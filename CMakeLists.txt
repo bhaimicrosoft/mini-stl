@@ -13,7 +13,9 @@ option(MINISTL_ENABLE_SANITIZERS "Enable supported sanitizers" OFF)
 option(MINISTL_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" ON)
 
 add_library(ministl INTERFACE
-        examples/version_example.cpp)
+        examples/version_example.cpp
+        include/ministl/memory/raw_buffer.hpp
+)
 add_library(ministl::ministl ALIAS ministl)
 
 target_compile_features(ministl INTERFACE cxx_std_20)
