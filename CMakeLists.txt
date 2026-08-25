@@ -12,13 +12,20 @@ option(MINISTL_BUILD_EXAMPLES "Build Mini STL examples" ON)
 option(MINISTL_ENABLE_SANITIZERS "Enable supported sanitizers" OFF)
 option(MINISTL_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" ON)
 
-add_library(ministl INTERFACE
-        examples/version_example.cpp
-        include/ministl/memory/raw_buffer.hpp
-)
+add_library(ministl INTERFACE)
 add_library(ministl::ministl ALIAS ministl)
 
 target_compile_features(ministl INTERFACE cxx_std_20)
+
+target_sources(
+    ministl
+    INTERFACE
+        FILE_SET HEADERS
+        BASE_DIRS include
+        FILES
+            include/ministl/memory/lifetime.hpp
+            include/ministl/memory/raw_buffer.hpp
+)
 
 target_include_directories(
     ministl
