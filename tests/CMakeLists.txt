@@ -1,5 +1,12 @@
-add_executable(ministl_tests version_tests.cpp)
+add_executable(raw_buffer_tests
+        raw_buffer_tests.cpp
+)
 
-target_link_libraries(ministl_tests PRIVATE ministl::ministl)
+target_link_libraries(raw_buffer_tests
+        PRIVATE ministl
+)
 
-add_test(NAME ministl.version COMMAND ministl_tests)
+add_test(
+        NAME raw_buffer_tests
+        COMMAND raw_buffer_tests
+)

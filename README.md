@@ -42,6 +42,18 @@ This project is designed to explore:
 - `List`
 - `HashMap`
 
+## Implemented
+
+### Memory
+
+- RawBuffer<T>
+    - raw memory allocation
+    - move-only semantics
+    - ownership transfer
+    - capacity management
+
+
+
 ## Build
 
 ```bash
