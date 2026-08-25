@@ -12,6 +12,13 @@ option(MINISTL_BUILD_EXAMPLES "Build Mini STL examples" ON)
 option(MINISTL_ENABLE_SANITIZERS "Enable supported sanitizers" OFF)
 option(MINISTL_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" ON)
 
+file(
+    GLOB_RECURSE
+    MINISTL_HEADERS
+    CONFIGURE_DEPENDS
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp"
+)
+
 add_library(ministl INTERFACE)
 add_library(ministl::ministl ALIAS ministl)
 
@@ -22,9 +29,7 @@ target_sources(
     INTERFACE
         FILE_SET HEADERS
         BASE_DIRS include
-        FILES
-            include/ministl/memory/lifetime.hpp
-            include/ministl/memory/raw_buffer.hpp
+        FILES ${MINISTL_HEADERS}
 )
 
 target_include_directories(
