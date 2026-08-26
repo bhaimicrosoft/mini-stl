@@ -2,7 +2,7 @@
 
 #include "ministl/containers/vector.hpp"
 
-using namespace ministl;
+using namespace miniSTL;
 
 void TestEmptyVector()
 {

@@ -5,57 +5,81 @@
 #include <iterator>
 #include <utility>
 
-namespace ministl {
-    template<typename T>
-    class RawBuffer {
-    public:
-        RawBuffer() = default;
+namespace miniSTL
+{
+  template <typename T>
+  class RawBuffer
+  {
+  public:
+    RawBuffer() = default;
 
-        explicit RawBuffer(const std::size_t capacity) : m_capacity(capacity) {
-            if (capacity > 0) {
-                m_data = static_cast<T *>(::operator new(sizeof(T) * capacity));
-            }
-        }
+    explicit RawBuffer(const std::size_t capacity) : m_capacity(capacity)
+    {
+      if (capacity > 0)
+      {
+        m_data = static_cast<T *>(::operator new(sizeof(T) * capacity));
+      }
+    }
 
-        ~RawBuffer() {
-            ::operator delete(m_data);
-        }
+    ~RawBuffer()
+    {
+      ::operator delete(m_data);
+    }
 
-        // Delete copy constructor and assignment operator
-        RawBuffer(const RawBuffer &) = delete;
+    // Delete copy constructor and assignment operator
+    RawBuffer(const RawBuffer &) = delete;
 
-        RawBuffer &operator=(const RawBuffer &) = delete;
+    RawBuffer &operator=(const RawBuffer &) = delete;
 
-        // Enable move semantics
-        RawBuffer(RawBuffer &&other) noexcept : m_data(std::exchange(other.m_data, nullptr)),
-                                                m_capacity(std::exchange(other.m_capacity, 0)) {
-        }
+    // Enable move semantics
+    RawBuffer(RawBuffer &&other) noexcept : m_data(std::exchange(other.m_data, nullptr)),
+                                            m_capacity(std::exchange(other.m_capacity, 0))
+    {
+    }
 
-        RawBuffer& operator=(RawBuffer&& other) noexcept {
-            if (this == &other) {
-                return *this;
-            }
-            delete m_data;
+    RawBuffer &operator=(RawBuffer &&other) noexcept
+    {
+      if (this == &other)
+      {
+        return *this;
+      }
+      delete m_data;
 
-            m_data = std::exchange(other.m_data, nullptr);
-            m_capacity = std::exchange(other.m_capacity, 0);
-            return *this;
-        }
+      m_data = std::exchange(other.m_data, nullptr);
+      m_capacity = std::exchange(other.m_capacity, 0);
+      return *this;
+    }
 
-        T* data() noexcept {
-            return m_data;
-        }
+    void swap(RawBuffer &other) noexcept
+    {
+      using std::swap;
 
-        const T* data() const noexcept {
-            return m_data;
-        }
+      swap(m_data, other.m_data);
+      swap(m_capacity, other.m_capacity);
+    }
 
-        [[nodiscard]] std::size_t capacity() const noexcept {
-            return m_capacity;
-        }
+    friend void swap(RawBuffer& left, RawBuffer& right) noexcept
+    {
+       left.swap(right);
+    }
 
-    private:
-        T *m_data{nullptr};
-        std::size_t m_capacity{0};
-    };
+    T *data() noexcept
+    {
+      return m_data;
+    }
+
+    const T *data() const noexcept
+    {
+      return m_data;
+    }
+
+    [[nodiscard]] std::size_t capacity() const noexcept
+    {
+      return m_capacity;
+    }
+
+  private:
+    T *m_data{nullptr};
+    std::size_t m_capacity{0};
+  };
 }

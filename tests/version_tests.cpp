@@ -8,11 +8,11 @@ int main()
 {
 	constexpr std::string_view expected_version{"0.1.0"};
 
-	if (ministl::version() != expected_version)
+	if (miniSTL::version() != expected_version)
 	{
 		std::cerr
 			<< "Expected version: " << expected_version
-			<< ", actual version: " << ministl::version()
+			<< ", actual version: " << miniSTL::version()
 			<< '\n';
 
 		return EXIT_FAILURE;

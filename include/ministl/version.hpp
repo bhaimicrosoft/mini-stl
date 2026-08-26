@@ -2,7 +2,7 @@
 
 #include <string_view>
 
-namespace ministl
+namespace miniSTL
 {
   inline constexpr int version_major = 0;
   inline constexpr int version_minor = 1;

@@ -22,12 +22,12 @@ struct Tracker
 int main()
 {
     {
-        ministl::RawBuffer<Tracker> buffer(1);
+        miniSTL::RawBuffer<Tracker> buffer(1);
 
         auto* obj =
-            ministl::construct_at(buffer.data());
+            miniSTL::construct_at(buffer.data());
 
-        ministl::destroy_at(obj);
+        miniSTL::destroy_at(obj);
     }
 
     assert(
