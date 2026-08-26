@@ -4,7 +4,7 @@
 #include <utility>
 #include <memory>
 
-namespace ministl {
+namespace miniSTL {
     template<typename T, typename... Args>
     constexpr T *construct_at(T *ptr, Args &&... args) {
         return ::new(static_cast<void *>(ptr))T(std::forward<Args>(args)...);

@@ -9,22 +9,22 @@ void TestUninitializedCopy()
 {
     Tracker::Reset();
     {
-        ministl::RawBuffer<Tracker> source(3);
+        miniSTL::RawBuffer<Tracker> source(3);
 
         for (size_t i = 0; i < 3; ++i)
         {
-            ministl::construct_at(source.data() + i);
+            miniSTL::construct_at(source.data() + i);
         }
 
-        ministl::RawBuffer<Tracker> destination(3);
+        miniSTL::RawBuffer<Tracker> destination(3);
 
-        ministl::uninitialized_copy(source.data(), source.data() + 3, destination.data());
+        miniSTL::uninitialized_copy(source.data(), source.data() + 3, destination.data());
 
         assert(Tracker::copies == 3);
         assert(Tracker::moves == 0);
 
-        ministl::destroy_range(source.data(), source.data() + 3);
-        ministl::destroy_range(destination.data(), destination.data() + 3);
+        miniSTL::destroy_range(source.data(), source.data() + 3);
+        miniSTL::destroy_range(destination.data(), destination.data() + 3);
     }
 
     assert(Tracker::constructions == Tracker::destructions);
@@ -34,21 +34,21 @@ void TestUninitializedMove()
 {
     Tracker::Reset();
     {
-        ministl::RawBuffer<Tracker> source(3);
+        miniSTL::RawBuffer<Tracker> source(3);
         for (size_t i = 0; i < 3; ++i)
         {
-            ministl::construct_at(source.data() + i);
+            miniSTL::construct_at(source.data() + i);
         }
 
-        ministl::RawBuffer<Tracker> destination(3);
+        miniSTL::RawBuffer<Tracker> destination(3);
 
-        ministl::uninitialized_move(source.data(), source.data() + 3, destination.data());
+        miniSTL::uninitialized_move(source.data(), source.data() + 3, destination.data());
 
         assert(Tracker::copies == 0);
         assert(Tracker::moves == 3);
 
-        ministl::destroy_range(source.data(), source.data() + 3);
-        ministl::destroy_range(destination.data(), destination.data() + 3);
+        miniSTL::destroy_range(source.data(), source.data() + 3);
+        miniSTL::destroy_range(destination.data(), destination.data() + 3);
     }
 
     assert(Tracker::constructions == Tracker::destructions);

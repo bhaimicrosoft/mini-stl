@@ -4,5 +4,5 @@
 
 int main()
 {
-    std::cout << "Mini STL version " << ministl::version() << '\n';
+    std::cout << "Mini STL version " << miniSTL::version() << '\n';
 }

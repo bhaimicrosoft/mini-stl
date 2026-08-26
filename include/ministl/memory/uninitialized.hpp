@@ -4,7 +4,7 @@
 #include <iterator>
 #include <utility>
 
-namespace ministl {
+namespace miniSTL {
     template<typename InputIt, typename ForwardIt>
     ForwardIt uninitialized_copy(
         InputIt first,

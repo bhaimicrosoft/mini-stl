@@ -1,7 +1,7 @@
 #include <cassert>
 #include <iostream>
 #include "ministl/memory/raw_buffer.hpp"
-using namespace ministl;
+using namespace miniSTL;
 
 int main() {
     RawBuffer<int> a(10);
